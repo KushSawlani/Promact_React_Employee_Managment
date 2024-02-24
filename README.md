@@ -21,7 +21,7 @@ The Employee Management System is a web application built using React for effici
 ## Installation
 1. Clone the repository:
     ```bash
-   
+   https://github.com/KushSawlani/Promact_React_Employee_Managment.git
     ```
 
 2. Install dependencies:
