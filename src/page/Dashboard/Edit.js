@@ -133,6 +133,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
           value={birthdate}
           onChange={(e) => setBirthdate(e.target.value)}
           className="border rounded-md p-2 w-full"
+          max={new Date().toISOString().split("T")[0]}
         />
 
         {/* Buttons for submitting or canceling edit */}
