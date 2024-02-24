@@ -1,8 +1,6 @@
 
 # Employee Management System in React
 
-🔗 Link
-https://shaileshjadav2732.github.io/Employee_Management_ReactApp/
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -23,8 +21,7 @@ The Employee Management System is a web application built using React for effici
 ## Installation
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Shaileshjadav2732/Employee_Management_ReactApp.git
-    cd Employee_Management_ReactApp
+   
     ```
 
 2. Install dependencies:
