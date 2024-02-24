@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
-import Swal from "sweetalert2";
+import React, { useState } from "react"; // Import React and useState hook
+import Swal from "sweetalert2"; // Import SweetAlert2 library
 
 function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
-  const id = selectedemployee.id;
+  // Destructure props and extract required variables and functions
+  const id = selectedemployee.id; // Extract id of selected employee
 
+  // Define state variables and their setter functions using useState hook
   const [fullname, setFullname] = useState(selectedemployee.fullname);
-
   const [email, setEmail] = useState(selectedemployee.email);
   const [experience, setExperience] = useState(selectedemployee.experience);
   const [birthdate, setBirthdate] = useState(selectedemployee.birthdate);
 
+  // Function to handle update of employee data
   const handleUpdate = (e) => {
-    e.preventDefault();
-    console.log(fullname, email, birthdate, experience);
-    console.log(typeof birthdate);
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Check if any required field is empty
     if (!fullname || !email || !experience || !birthdate) {
+      // If any field is empty, show error message using SweetAlert2
       return Swal.fire({
         icon: "error",
         title: "Error",
@@ -23,6 +26,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
       });
     }
 
+    // Create updatedEmployee object with new data
     const updatedEmployee = {
       id: id,
       fullname: fullname,
@@ -31,13 +35,21 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
       birthdate: birthdate,
     };
 
+    // Create a copy of employees array
     const updatedEmployees = [...employees];
+
+    // Find index of selected employee in updatedEmployees array
     const index = updatedEmployees.findIndex((employee) => employee.id === id);
 
+    // If selected employee is found
     if (index !== -1) {
+      // Update employee data at found index with updatedEmployee data
       updatedEmployees[index] = updatedEmployee;
+
+      // Update employees state with updatedEmployees array
       setEmployees(updatedEmployees);
 
+      // Show success message using SweetAlert2
       Swal.fire({
         icon: "success",
         title: "Updated",
@@ -46,16 +58,20 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
         timer: 1500,
       });
 
+      // Exit editing mode by setting isEditing state to false
       setISEditing(false);
     } else {
+      // If selected employee is not found, log error message to console
       console.error("Employee not found");
     }
   };
 
+  // JSX structure for edit form component
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
       <form onSubmit={handleUpdate} className="space-y-4">
         <h1 className="text-2xl font-semibold mb-4">Update Employee</h1>
+        {/* Input field for Full Name */}
         <label
           htmlFor="fullname"
           className="block text-sm font-medium text-gray-600"
@@ -71,6 +87,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
           className="border rounded-md p-2 w-full"
         />
 
+        {/* Input field for Email */}
         <label
           htmlFor="email"
           className="block text-sm font-medium text-gray-600"
@@ -86,8 +103,9 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
           className="border rounded-md p-2 w-full"
         />
 
+        {/* Input field for Experience */}
         <label
-          htmlFor="expereince"
+          htmlFor="expereince" // Typo: Should be "experience"
           className="block text-sm font-medium text-gray-600"
         >
           Experience (in years)
@@ -101,6 +119,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
           className="border rounded-md p-2 w-full"
         />
 
+        {/* Input field for BirthDate */}
         <label
           htmlFor="birthdate"
           className="block text-sm font-medium text-gray-600"
@@ -116,12 +135,15 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
           className="border rounded-md p-2 w-full"
         />
 
+        {/* Buttons for submitting or canceling edit */}
         <div className="mt-4 flex space-x-2">
+          {/* Submit Button */}
           <input
             type="submit"
             value="Update"
             className="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600 cursor-pointer"
           />
+          {/* Cancel Button */}
           <input
             type="button"
             value="Cancel"
@@ -134,4 +156,4 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
   );
 }
 
-export default Edit;
+export default Edit; // Export Edit component

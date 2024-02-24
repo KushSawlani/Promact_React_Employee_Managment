@@ -1,54 +1,63 @@
-
-// import Dashboard from "./page/Dashboard";
-import Swal from "sweetalert2";
-
-import Header from "./Header";
-import List from "./List";
-import Add from "./Add";
-import Edit from "./Edit";
-import { employeesData } from "../../data/index";
-import { useState } from "react";
+// Import necessary libraries and components
+import Swal from "sweetalert2"; // SweetAlert2 for showing alerts
+import Header from "./Header"; // Header component
+import List from "./List"; // List component
+import Add from "./Add"; // Add component
+import Edit from "./Edit"; // Edit component
+import { employeesData } from "../../data/index"; // Sample employee data
+import { useState } from "react"; // useState hook for managing state
 
 function Dashboard() {
-  const [employees, setEmployees] = useState(employeesData);
-  const [selectedemployee, setSelectedEmployee] = useState(null);
-  const [isAdding, setIsAdding] = useState(false);
-  const [isEditing, setISEditing] = useState(false);
+  // Define state variables using useState hook
+  const [employees, setEmployees] = useState(employeesData); // Employee data
+  const [selectedemployee, setSelectedEmployee] = useState(null); // Selected employee for editing
+  const [isAdding, setIsAdding] = useState(false); // Flag for showing add employee form
+  const [isEditing, setISEditing] = useState(false); // Flag for showing edit employee form
 
+  // Function to handle editing of employee data
   const handleEdit = (id) => {
-   const [employee]=employees.filter(employee => employee.id === id);
+    // Filter the employee whose id matches the provided id
+    const [employee] = employees.filter(employee => employee.id === id);
+    // Set the selected employee for editing
     setSelectedEmployee(employee);
+    // Set editing mode to true
     setISEditing(true);
-   };
+  };
 
+  // Function to handle deletion of an employee
   const handleDelete = (id) => {
+    // Show confirmation dialog using SweetAlert2
     Swal.fire({
       icon: 'warning',
       title: 'Are you sure you want to delete',
       showCancelButton: true,
-      confirmButtonText: 'yes, delete it',
-      cancelButtonText: 'No,Cancel',
-
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'No, cancel',
     }).then(result => {
-      if (result.value) {
+      if (result.value) { // If user confirms deletion
+        // Filter the employee whose id matches the provided id
         const [employee] = employees.filter(employee => employee.id === id);
+        // Show success message using SweetAlert2
         Swal.fire({
           icon: 'success',
-          title: 'deleted!',
-          text: `${employee.firstName} ${employee.lastName}'s data has been deleted`,
+          title: 'Deleted!',
+          text: `${employee.fullname}'s data has been deleted`,
           showConfirmButton: false,
           timer: 1500
         });
+        // Remove the employee from the list
         setEmployees(employees.filter(employee => employee.id !== id));
       };
     });
   }
 
+  // Render the Dashboard component
   return (
     <div className="container">
- 
+      {/* Conditional rendering based on isAdding and isEditing flags */}
       {!isAdding && !isEditing && (
         <>
+          {/* Render Header and List components */}
           <Header setIsAdding={setIsAdding} />
           <List
             employees={employees}
@@ -57,9 +66,9 @@ function Dashboard() {
           />
         </>
       )}
-    
       {isAdding && (
         <>
+          {/* Render Add component */}
           <Add
             employees={employees}
             setEmployees={setEmployees}
@@ -67,9 +76,9 @@ function Dashboard() {
           />
         </>
       )}
-  
       {isEditing && (
         <>
+          {/* Render Edit component */}
           <Edit
             employees={employees}
             selectedemployee={selectedemployee}
@@ -82,4 +91,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Dashboard; // Export Dashboard component
