@@ -14,7 +14,7 @@ function List({ employees, handleEdit, handleDelete }) {
             {/* Table header columns */}
             <th className="px-4 py-2 text-center">#</th>
             <th className="px-4 py-2 text-center">Full Name</th>
-            <th className="px-4 py-2 text-center">Email</th>
+            <th className="px-4 py-2 text-center">Department</th>
             <th className="px-4 py-2 text-center">Experience</th>
             <th className="px-4 py-2 text-center">BirthDate</th>
             <th className="px-4 py-2 col-span-2 text-center">Action</th>
@@ -31,8 +31,8 @@ function List({ employees, handleEdit, handleDelete }) {
                 {/* Display employee number */}
                 <td className="border px-4 py-2 text-center">{employee.fullname}</td>
                 {/* Display employee full name */}
-                <td className="border px-4 py-2 text-center">{employee.email}</td>
-                {/* Display employee email */}
+                <td className="border px-4 py-2 text-center">{employee.department}</td>
+                {/* Display employee Department */}
                 <td className="border px-4 py-2 text-center">{employee.experience}</td>
                 {/* Display employee experience */}
                 <td className="border px-4 py-2 text-center">{employee.birthdate}</td>

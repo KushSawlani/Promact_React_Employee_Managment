@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 function Add({ employees, setEmployees, setIsAdding }) {
   // State variables to manage form input values
   const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
+  const [department, setDepartment] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [experience, setExperience] = useState();
   
@@ -28,7 +28,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
     e.preventDefault();
 
     // Validation for required fields
-    if (!fullname || !experience || !email || !birthdate) {
+    if (!fullname || !experience || !department || !birthdate) {
       return Swal.fire({
         icon: "error",
         title: "Error",
@@ -44,7 +44,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
     const newEmployee = {
       id,
       fullname,
-      email,
+      department,
       experience,
       birthdate,
     };
@@ -87,19 +87,19 @@ function Add({ employees, setEmployees, setIsAdding }) {
           ref={textInput} // Reference for focusing on this input field
         />
 
-        {/* Input field for Email */}
+        {/* Input field for Department */}
         <label
-          htmlFor="email"
+          htmlFor="department"
           className="block text-sm font-medium text-gray-600"
         >
-          Email
+          Department
         </label>
         <input
-          id="email"
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          id="department"
+          type="text"
+          name="department"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
           className="border rounded-md p-2 w-full"
         />
 

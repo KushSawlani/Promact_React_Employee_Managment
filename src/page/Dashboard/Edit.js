@@ -7,7 +7,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
 
   // Define state variables and their setter functions using useState hook
   const [fullname, setFullname] = useState(selectedemployee.fullname);
-  const [email, setEmail] = useState(selectedemployee.email);
+  const [department, setDepartment] = useState(selectedemployee.department);
   const [experience, setExperience] = useState(selectedemployee.experience);
   const [birthdate, setBirthdate] = useState(selectedemployee.birthdate);
 
@@ -16,7 +16,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
     e.preventDefault(); // Prevent default form submission behavior
 
     // Check if any required field is empty
-    if (!fullname || !email || !experience || !birthdate) {
+    if (!fullname || !department || !experience || !birthdate) {
       // If any field is empty, show error message using SweetAlert2
       return Swal.fire({
         icon: "error",
@@ -30,7 +30,7 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
     const updatedEmployee = {
       id: id,
       fullname: fullname,
-      email: email,
+      department: department,
       experience: experience,
       birthdate: birthdate,
     };
@@ -87,19 +87,19 @@ function Edit({ employees, selectedemployee, setEmployees, setISEditing }) {
           className="border rounded-md p-2 w-full"
         />
 
-        {/* Input field for Email */}
+        {/* Input field for department */}
         <label
-          htmlFor="email"
+          htmlFor="department"
           className="block text-sm font-medium text-gray-600"
         >
-          Email
+          department
         </label>
         <input
-          id="email"
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          id="department"
+          type="department"
+          name="department"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
           className="border rounded-md p-2 w-full"
         />
 
