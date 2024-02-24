@@ -1,3 +1,0 @@
-const employeesData = [];
-
-export { employeesData };
